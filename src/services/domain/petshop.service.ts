@@ -7,7 +7,6 @@ import { Observable } from "rxjs/Rx";
 @Injectable()
 export class PetshopService{
 
-    
     constructor(public http:HttpClient){
 
     }
