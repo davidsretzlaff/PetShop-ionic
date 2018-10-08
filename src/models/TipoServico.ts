@@ -1,10 +1,7 @@
-
-
 import { EnderecoDTO } from "./Endereco";
 import { FuncionarioDTO } from "./Funcionario";
 
-
-export interface PetshopDTO {
+export interface TipoServicoDTO {
     id : string;
     nome : string;
     cnpj : string;

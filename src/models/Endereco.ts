@@ -1,4 +1,4 @@
-export interface PetshopDTO {
+export interface EnderecoDTO {
     id : string;
     logradouro : string;
     numero : string;

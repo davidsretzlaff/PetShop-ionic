@@ -8,6 +8,10 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { PetshopService } from "../services/domain/petshop.service";
+import { TipoServicoService } from '../services/domain/TipoServico.service';
+import { AgendaFuncionarioService } from "../services/domain/AgendaFuncionario.service";
+import { TipoAnimalService } from "../services/domain/TipoAnimal.service";
+import { FuncionarioService } from "../services/domain/Funcionario.service";
 
 @NgModule({
   declarations: [
@@ -28,7 +32,12 @@ import { PetshopService } from "../services/domain/petshop.service";
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    PetshopService // importar o servico que consome api
+    PetshopService,
+    TipoServicoService,
+    AgendaFuncionarioService,
+    TipoAnimalService,
+    FuncionarioService,
+     // importar o servico que consome api
   ]
 })
 export class AppModule {}
