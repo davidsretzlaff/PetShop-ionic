@@ -6,5 +6,4 @@ export interface TipoServicoDTO {
     nome : string;
     cnpj : string;
     endereco : EnderecoDTO;
-    funcionario : Array<FuncionarioDTO>[];
 }

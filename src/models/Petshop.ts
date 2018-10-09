@@ -9,5 +9,5 @@ export interface PetshopDTO {
     nome : string;
     cnpj : string;
     endereco : EnderecoDTO;
-    funcionario : Array<FuncionarioDTO>[];
+    funcionario : Array<FuncionarioDTO>;
 }

@@ -4,5 +4,5 @@ import { TipoServicoDTO } from "./TipoServico";
 export interface FuncionarioDTO {
     id : string;
     nome : string;
-    tipoServico: Array<TipoServicoDTO> [];
+    tipoServico: Array<TipoServicoDTO>;
 }
