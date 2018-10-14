@@ -1,3 +1,4 @@
+
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { HttpClientModule} from '@angular/common/http';
@@ -13,6 +14,7 @@ import { AgendaFuncionarioService } from "../services/domain/AgendaFuncionario.s
 import { TipoAnimalService } from "../services/domain/TipoAnimal.service";
 import { FuncionarioService } from "../services/domain/Funcionario.service";
 import { PetshopsPage } from "../pages/petshops/petshops";
+import { AnimalService } from './../services/domain/Animal.service';
 
 @NgModule({
   declarations: [
@@ -40,6 +42,7 @@ import { PetshopsPage } from "../pages/petshops/petshops";
     AgendaFuncionarioService,
     TipoAnimalService,
     FuncionarioService,
+    AnimalService
      // importar o servico que consome api
   ]
 })
