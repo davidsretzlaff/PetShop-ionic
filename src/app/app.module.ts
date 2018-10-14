@@ -12,11 +12,13 @@ import { TipoServicoService } from '../services/domain/TipoServico.service';
 import { AgendaFuncionarioService } from "../services/domain/AgendaFuncionario.service";
 import { TipoAnimalService } from "../services/domain/TipoAnimal.service";
 import { FuncionarioService } from "../services/domain/Funcionario.service";
+import { PetshopsPage } from "../pages/petshops/petshops";
 
 @NgModule({
   declarations: [
     MyApp,
-    HomePage
+    HomePage,
+    PetshopsPage
   ],
   imports: [
     BrowserModule,
@@ -26,7 +28,8 @@ import { FuncionarioService } from "../services/domain/Funcionario.service";
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage
+    HomePage,
+    PetshopsPage
   ],
   providers: [
     StatusBar,

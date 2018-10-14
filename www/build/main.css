@@ -25677,3 +25677,27 @@ ion-navbar.toolbar {
   min-height: calc(46px + constant(safe-area-inset-bottom));
   min-height: calc(46px + env(safe-area-inset-bottom));
 }
+
+page-petshops .azul::after {
+  content: url("http://recursos.mytime.com.br/Imagem/Menu/247/Azul.gif");
+}
+
+page-petshops .vermelho::after {
+  content: url("https://www.deliciouslingerieplus.com.br/image/cache//cores/cor-vermelha-30x30.jpg");
+}
+
+page-petshops .centro {
+  width: 100vw;
+  text-align: center;
+}
+
+page-petshops .efect {
+  margin-right: 10px;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+page-petshops .efect:hover {
+  -webkit-transform: scale(1.2);
+  transform: scale(1.2);
+}

@@ -1,6 +1,7 @@
 
 
 import { EnderecoDTO } from "./Endereco";
+import { funcionariospet } from "./funcionarios-pet";
 import { FuncionarioDTO } from "./Funcionario";
 
 
@@ -9,5 +10,5 @@ export interface PetshopDTO {
     nome : string;
     cnpj : string;
     endereco : EnderecoDTO;
-    funcionario : Array<FuncionarioDTO>;
+    funcionarios : FuncionarioDTO[];
 }
