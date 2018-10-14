@@ -18,8 +18,8 @@ export class PetshopService{
         return this.http.get<PetshopDTO[]>(`${API_CONFIG.baseUrl}/petshop`);
     }
 
-    findById(id) : Observable<PetshopDTO[]>
+    findById(id) : Observable<PetshopDTO>
     {
-        return this.http.get<PetshopDTO[]>(`${API_CONFIG.baseUrl}/petshop/`+id);
+        return this.http.get<PetshopDTO>(`${API_CONFIG.baseUrl}/petshop/`+id);
     }
 }

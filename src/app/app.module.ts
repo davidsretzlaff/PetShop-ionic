@@ -13,6 +13,7 @@ import { AgendaFuncionarioService } from "../services/domain/AgendaFuncionario.s
 import { TipoAnimalService } from "../services/domain/TipoAnimal.service";
 import { FuncionarioService } from "../services/domain/Funcionario.service";
 import { PetshopsPage } from "../pages/petshops/petshops";
+import { ClienteService } from "../services/domain/Cliente.service";
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { PetshopsPage } from "../pages/petshops/petshops";
     AgendaFuncionarioService,
     TipoAnimalService,
     FuncionarioService,
+    ClienteService
      // importar o servico que consome api
   ]
 })

@@ -42,6 +42,7 @@ className: string;
     });
   }
 
+
 infoPet(value)
 {
   this.catPet = value;

@@ -18,4 +18,9 @@ export class FuncionarioService{
     {
         return this.http.get<FuncionarioDTO[]>(`${API_CONFIG.baseUrl}/funcionario`);
     }
+
+     findAllById(id) : Observable<FuncionarioDTO>
+    {
+        return this.http.get<FuncionarioDTO>(`${API_CONFIG.baseUrl}/funcionario`+id);
+    }
 }
