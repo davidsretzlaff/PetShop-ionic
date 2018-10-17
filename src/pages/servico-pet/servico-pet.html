@@ -36,7 +36,7 @@
 
   <ion-item *ngFor="let item of animais,let i = index">
     <ion-label>{{item.nome}} - {{item.tipoAnimal.tipo}}</ion-label>
-    <ion-radio checked="{{i == 0}}" (ionSelect)="mcqAnswer()" value="{{item.id}}"></ion-radio>
+    <ion-radio checked="{{i == 0}}" value="{{item.id}}"></ion-radio>
   </ion-item>
 
 </ion-list>
