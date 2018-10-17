@@ -29,6 +29,7 @@ export class ServicoPetPage {
   tipoServicos: TipoServicoDTO[];
   animais: AnimalDTO[];
   nomecliente: string;
+  petEscolhido: AnimalDTO;
 
   constructor(
           public navCtrl: NavController, 
@@ -52,11 +53,15 @@ ionViewDidLoad() {
     });
   }
 
+ChoosePet(pet)
+{
+  this.petEscolhido = pet
+  this.getTipoServico();
+}
   ionViewDidLoadbkp() {
     this.PetshopService.findById(this.id) 
     .subscribe(response =>{
       this.petshop = response;
-      this.getTipoServico();
     },
     error =>{
       console.log(error);
@@ -67,6 +72,12 @@ ionViewDidLoad() {
   {
     var animalid = animalEscolhido;
   }
+  
+//   pageservice(servico,pet) {
+//   this.navCtrl.push('ServicoPetPage', {
+//   servico: servico,
+//   pet: pet
+// })}
 
   getTipoServico()
   {
@@ -78,8 +89,15 @@ ionViewDidLoad() {
               DescriptionServico.push(this.petshop.funcionarios[i].tipoServico[a]);
   }
 }    
-
 this.tipoServicos = DescriptionServico;
-
+this.tipoServicos = this.tipoServicos.filter((item) => {
+        //if(item.funcionario == undefined )
+          return (
+             item.tipoanimal.some(g => g.id == this.petEscolhido.tipoAnimal.id)
+            )
+      })
   }
+
+  
+  
 }
