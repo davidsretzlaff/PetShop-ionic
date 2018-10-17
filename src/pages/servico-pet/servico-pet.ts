@@ -44,9 +44,8 @@ ionViewDidLoad() {
     .subscribe(response =>{
       this.cliente = response;
       this.animais = this.cliente.animais;
-      this.nomecliente = this.cliente.nome;
-     
-      // this.getTipoServico();
+      this.nomecliente = this.cliente.nome;  
+      this.ionViewDidLoadbkp();   
     },
     error =>{
       console.log(error);

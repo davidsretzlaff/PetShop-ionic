@@ -30,7 +30,6 @@
 <ion-content padding>
 <ion-list radio-group>
   <ion-list-header class="centralizar">
-
     Escolha seu pet 
   </ion-list-header>
 
@@ -38,7 +37,17 @@
     <ion-label>{{item.nome}} - {{item.tipoAnimal.tipo}}</ion-label>
     <ion-radio checked="{{i == 0}}" value="{{item.id}}"></ion-radio>
   </ion-item>
-
 </ion-list>
+
+ <ion-list>
+  
+  <button ion-item *ngFor="let item of tipoServicos"  >
+    <ion-thumbnail item-start>
+      <img src="../../assets/imgs/pt.png">
+    </ion-thumbnail>
+    <h2>{{item.description}}</h2>
+    
+  </button>
+ </ion-list>
 </ion-content>
 
