@@ -61,7 +61,7 @@ var PetshopsPage = /** @class */ (function () {
     };
     PetshopsPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-petshops',template:/*ion-inline-start:"C:\ws-ionic\teste.Ionic\src\pages\petshops\petshops.html"*/'\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n    <ion-title>Petshops</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n\n\n  <div class="centro">\n\n    <img src="../../assets/icon/cat.png" class="efect" id="cat" (click)="infoPet(1)" >\n\n    <img src="../../assets/icon/dog.png" class="efect"  id="dog" (click)="infoPet(2)" >\n\n\n\n  </div>\n\n  \n\n  <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>\n\n<ion-list>\n\n  \n\n  <button (click)="pageservice(item.id)" ion-item *ngFor="let item of items"  >\n\n    <ion-thumbnail item-start>\n\n      <img src="../../assets/imgs/pt.png">\n\n    </ion-thumbnail>\n\n    <h2>{{item.nome}}</h2>\n\n    <p> {{item.endereco.logradouro}} {{item.endereco.numero}}</p>\n\n\n\n  </button>\n\n\n\n</ion-list>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\ws-ionic\teste.Ionic\src\pages\petshops\petshops.html"*/,
+            selector: 'page-petshops',template:/*ion-inline-start:"C:\ws-ionic\teste.Ionic\src\pages\petshops\petshops.html"*/'\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n    <ion-title>Petshops</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n\n\n  <div class="centro">\n\n    <img src="../../assets/icon/cat.png" class="efect" id="cat" (click)="infoPet(2)" >\n\n    <img src="../../assets/icon/dog.png" class="efect"  id="dog" (click)="infoPet(1)" >\n\n\n\n  </div>\n\n  \n\n  <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>\n\n<ion-list>\n\n  \n\n  <button (click)="pageservice(item.id)" ion-item *ngFor="let item of items"  >\n\n    <ion-thumbnail item-start>\n\n      <img src="../../assets/imgs/pt.png">\n\n    </ion-thumbnail>\n\n    <h2>{{item.nome}}</h2>\n\n    <p> {{item.endereco.logradouro}} {{item.endereco.numero}}</p>\n\n\n\n  </button>\n\n\n\n</ion-list>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\ws-ionic\teste.Ionic\src\pages\petshops\petshops.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */],
@@ -96,11 +96,11 @@ webpackEmptyAsyncContext.id = 114;
 
 var map = {
 	"../pages/petshops/petshops.module": [
-		282,
+		283,
 		1
 	],
 	"../pages/servico-pet/servico-pet.module": [
-		283,
+		284,
 		0
 	]
 };
@@ -126,8 +126,8 @@ module.exports = webpackAsyncContext;
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ClienteService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(26);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__config_api_config__ = __webpack_require__(33);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__config_api_config__ = __webpack_require__(29);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -146,7 +146,7 @@ var ClienteService = /** @class */ (function () {
     }
     // função para consumir a api, API_CONFIG.baseUrl foi onde guardei o endereço da api la no config.
     ClienteService.prototype.findById = function (id) {
-        return this.http.get(__WEBPACK_IMPORTED_MODULE_2__config_api_config__["a" /* API_CONFIG */].baseUrl + "/clientes" + id);
+        return this.http.get(__WEBPACK_IMPORTED_MODULE_2__config_api_config__["a" /* API_CONFIG */].baseUrl + "/clientes/" + id);
     };
     ClienteService = __decorate([
         __WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */](),
@@ -165,8 +165,8 @@ var ClienteService = /** @class */ (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FuncionarioService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(26);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__config_api_config__ = __webpack_require__(33);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__config_api_config__ = __webpack_require__(29);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -188,7 +188,7 @@ var FuncionarioService = /** @class */ (function () {
         return this.http.get(__WEBPACK_IMPORTED_MODULE_2__config_api_config__["a" /* API_CONFIG */].baseUrl + "/funcionario");
     };
     FuncionarioService.prototype.findAllById = function (id) {
-        return this.http.get(__WEBPACK_IMPORTED_MODULE_2__config_api_config__["a" /* API_CONFIG */].baseUrl + "/funcionario" + id);
+        return this.http.get(__WEBPACK_IMPORTED_MODULE_2__config_api_config__["a" /* API_CONFIG */].baseUrl + "/funcionario/" + id);
     };
     FuncionarioService = __decorate([
         __WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */](),
@@ -220,9 +220,9 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__ = __webpack_require__(32);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_common_http__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_common_http__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular__ = __webpack_require__(42);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_splash_screen__ = __webpack_require__(196);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_status_bar__ = __webpack_require__(199);
@@ -235,12 +235,14 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__services_domain_Funcionario_service__ = __webpack_require__(201);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_petshops_petshops__ = __webpack_require__(102);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__services_domain_Cliente_service__ = __webpack_require__(200);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__services_domain_Animal_service__ = __webpack_require__(282);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -291,7 +293,8 @@ var AppModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_10__services_domain_AgendaFuncionario_service__["a" /* AgendaFuncionarioService */],
                 __WEBPACK_IMPORTED_MODULE_11__services_domain_TipoAnimal_service__["a" /* TipoAnimalService */],
                 __WEBPACK_IMPORTED_MODULE_12__services_domain_Funcionario_service__["a" /* FuncionarioService */],
-                __WEBPACK_IMPORTED_MODULE_14__services_domain_Cliente_service__["a" /* ClienteService */]
+                __WEBPACK_IMPORTED_MODULE_14__services_domain_Cliente_service__["a" /* ClienteService */],
+                __WEBPACK_IMPORTED_MODULE_15__services_domain_Animal_service__["a" /* AnimalService */]
                 // importar o servico que consome api
             ]
         })
@@ -404,9 +407,9 @@ var HomePage = /** @class */ (function () {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TipoServicoService; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_common_http__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_common_http__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__config_api_config__ = __webpack_require__(33);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__config_api_config__ = __webpack_require__(29);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -443,9 +446,9 @@ var TipoServicoService = /** @class */ (function () {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AgendaFuncionarioService; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_common_http__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_common_http__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__config_api_config__ = __webpack_require__(33);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__config_api_config__ = __webpack_require__(29);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -483,8 +486,8 @@ var AgendaFuncionarioService = /** @class */ (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TipoAnimalService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(26);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__config_api_config__ = __webpack_require__(33);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__config_api_config__ = __webpack_require__(29);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -516,7 +519,49 @@ var TipoAnimalService = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 33:
+/***/ 282:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AnimalService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__config_api_config__ = __webpack_require__(29);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var AnimalService = /** @class */ (function () {
+    function AnimalService(http) {
+        this.http = http;
+    }
+    // função para consumir a api, API_CONFIG.baseUrl foi onde guardei o endereço da api la no config.
+    AnimalService.prototype.findAll = function () {
+        return this.http.get(__WEBPACK_IMPORTED_MODULE_2__config_api_config__["a" /* API_CONFIG */].baseUrl + "/animal");
+    };
+    AnimalService.prototype.findById = function (id) {
+        return this.http.get(__WEBPACK_IMPORTED_MODULE_2__config_api_config__["a" /* API_CONFIG */].baseUrl + "/animal/" + id);
+    };
+    AnimalService = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_common_http__["a" /* HttpClient */]])
+    ], AnimalService);
+    return AnimalService;
+}());
+
+//# sourceMappingURL=Animal.service.js.map
+
+/***/ }),
+
+/***/ 29:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -534,8 +579,8 @@ var API_CONFIG = {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PetshopService; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(26);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__config_api_config__ = __webpack_require__(33);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__config_api_config__ = __webpack_require__(29);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);

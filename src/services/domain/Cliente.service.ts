@@ -16,6 +16,6 @@ export class ClienteService{
 
     findById(id) : Observable<ClienteDTO>
     {
-        return this.http.get<ClienteDTO>(`${API_CONFIG.baseUrl}/clientes`+id);
+        return this.http.get<ClienteDTO>(`${API_CONFIG.baseUrl}/clientes/`+id);
     }
 }

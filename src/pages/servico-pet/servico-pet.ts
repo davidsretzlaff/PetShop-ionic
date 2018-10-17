@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { PetshopService } from "../../services/domain/petshop.service";
 import { PetshopDTO } from "../../models/Petshop";
@@ -7,6 +7,7 @@ import { ClienteDTO } from "../../models/Cliente";
 import { TipoServicoService } from "../../services/domain/TipoServico.service";
 import { TipoServicoDTO } from "../../models/TipoServico";
 import { FuncionarioService } from "../../services/domain/Funcionario.service";
+import { AnimalDTO } from "../../models/Animal";
 
 /**
  * Generated class for the ServicoPetPage page.
@@ -22,10 +23,12 @@ import { FuncionarioService } from "../../services/domain/Funcionario.service";
 })
 export class ServicoPetPage {
 
-  items: PetshopDTO;
+  petshop: PetshopDTO;
   id = this.navParams.get('id');
   cliente: ClienteDTO;
   tipoServicos: TipoServicoDTO[];
+  animais: AnimalDTO[];
+  nomecliente: string;
 
   constructor(
           public navCtrl: NavController, 
@@ -36,27 +39,44 @@ export class ServicoPetPage {
           
 ){ }
 
-  ionViewDidLoad() {
-
-    this.PetshopService.findById(this.id)
+ionViewDidLoad() {
+    this.CienteService.findById(1)// buscando um cliente padrão para simula~ção
     .subscribe(response =>{
-      this.items = response;
-      this.getFuncionarioById();
+      this.cliente = response;
+      this.animais = this.cliente.animais;
+      this.nomecliente = this.cliente.nome;
+     
+      // this.getTipoServico();
     },
-    
     error =>{
       console.log(error);
     });
   }
 
-  getFuncionarioById()
+  ionViewDidLoadbkp() {
+    this.PetshopService.findById(this.id) 
+    .subscribe(response =>{
+      this.petshop = response;
+      this.getTipoServico();
+    },
+    error =>{
+      console.log(error);
+    });
+  }
+
+  mcqAnswer(animalEscolhido)
+  {
+    var animalid = animalEscolhido;
+  }
+
+  getTipoServico()
   {
     var DescriptionServico = [];
     var idTipoServico=[];
 
-    for (var i = 0; i < this.items.funcionarios.length; i++) { 
-       for (var a = 0; a < this.items.funcionarios[i].tipoServico.length ; a++) { 
-              DescriptionServico.push(this.items.funcionarios[i].tipoServico[a]);
+    for (var i = 0; i < this.petshop.funcionarios.length; i++) { 
+       for (var a = 0; a < this.petshop.funcionarios[i].tipoServico.length ; a++) { 
+              DescriptionServico.push(this.petshop.funcionarios[i].tipoServico[a]);
   }
 }    
 

@@ -25701,3 +25701,7 @@ page-petshops .efect:hover {
   -webkit-transform: scale(1.2);
   transform: scale(1.2);
 }
+
+.centralizar {
+  text-align: center;
+}

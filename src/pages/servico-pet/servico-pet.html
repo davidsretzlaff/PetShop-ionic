@@ -11,18 +11,34 @@
   </ion-navbar>
  
 </ion-header>
-<ion-list>
-  
-  <button ion-item *ngFor="let item of tipoServicos"  >
-    <ion-thumbnail item-start>
-      <img src="../../assets/imgs/pt.png">
-    </ion-thumbnail>
-    <h2>{{item.descricao}}</h2>
     
+<!--<ion-content padding>
+  <ion-item class="centralizar">
+   <ion-label >{{nomecliente}}</ion-label>
+</ion-item>
+  <ion-card-header class="centralizar">
+    Escolha seu pet
+  </ion-card-header>
+<ion-list>
+  <button ion-item *ngFor="let item of animais"  >
+    <ion-thumbnail item-start>
+    </ion-thumbnail>
+    <h2>{{item.nome}}</h2>   <p>{{item.tipoAnimal.tipo}}</p>
+
   </button>
+</ion-list>-->
+<ion-content padding>
+<ion-list radio-group>
+  <ion-list-header class="centralizar">
+
+    Escolha seu pet 
+  </ion-list-header>
+
+  <ion-item *ngFor="let item of animais,let i = index">
+    <ion-label>{{item.nome}} - {{item.tipoAnimal.tipo}}</ion-label>
+    <ion-radio checked="{{i == 0}}" (ionSelect)="mcqAnswer()" value="{{item.id}}"></ion-radio>
+  </ion-item>
 
 </ion-list>
-
-<ion-content padding>
-
 </ion-content>
+
