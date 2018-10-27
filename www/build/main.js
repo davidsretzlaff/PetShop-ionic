@@ -1,4 +1,4 @@
-webpackJsonp([2],{
+webpackJsonp([3],{
 
 /***/ 102:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -95,12 +95,16 @@ webpackEmptyAsyncContext.id = 114;
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
-	"../pages/petshops/petshops.module": [
+	"../pages/agenda/agenda.module": [
 		283,
 		1
 	],
-	"../pages/servico-pet/servico-pet.module": [
+	"../pages/petshops/petshops.module": [
 		284,
+		2
+	],
+	"../pages/servico-pet/servico-pet.module": [
+		285,
 		0
 	]
 };
@@ -273,6 +277,7 @@ var AppModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_2__angular_common_http__["b" /* HttpClientModule */],
                 __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["c" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_6__app_component__["a" /* MyApp */], {}, {
                     links: [
+                        { loadChildren: '../pages/agenda/agenda.module#AgendaPageModule', name: 'AgendaPage', segment: 'agenda', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/petshops/petshops.module#PetshopsPageModule', name: 'PetshopsPage', segment: 'petshops', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/servico-pet/servico-pet.module#ServicoPetPageModule', name: 'ServicoPetPage', segment: 'servico-pet', priority: 'low', defaultHistory: [] }
                     ]

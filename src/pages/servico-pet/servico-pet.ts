@@ -30,6 +30,7 @@ export class ServicoPetPage {
   animais: AnimalDTO[];
   nomecliente: string;
   petEscolhido: AnimalDTO;
+  servicoEscolhido: TipoServicoDTO;
 
   constructor(
           public navCtrl: NavController, 
@@ -73,12 +74,17 @@ ChoosePet(pet)
     var animalid = animalEscolhido;
   }
   
-//   pageservice(servico,pet) {
-//   this.navCtrl.push('ServicoPetPage', {
-//   servico: servico,
-//   pet: pet
-// })}
+  pageservice() {
+  this.navCtrl.push('AgendaPage', {
+  servico: this.servicoEscolhido,
+  pet: this.petEscolhido
+})}
 
+ChooseService(Servico)
+{
+  this.servicoEscolhido = Servico;
+  this.pageservice();
+}
   getTipoServico()
   {
     var DescriptionServico = [];

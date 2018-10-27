@@ -25678,6 +25678,25 @@ ion-navbar.toolbar {
   min-height: calc(46px + env(safe-area-inset-bottom));
 }
 
+page-agenda .grid-agenda {
+  width: 95 vw;
+  font-weight: 18px;
+  height: 25vh;
+  text-align: center;
+  padding-top: 70px;
+  margin-top: 10px;
+}
+
+page-agenda .disponivel {
+  background-color: #4682B4;
+  color: white;
+}
+
+page-agenda .ocupado {
+  background-color: #FF4500;
+  color: white;
+}
+
 page-petshops .azul::after {
   content: url("http://recursos.mytime.com.br/Imagem/Menu/247/Azul.gif");
 }
