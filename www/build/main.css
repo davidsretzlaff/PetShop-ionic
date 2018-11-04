@@ -4872,10 +4872,6 @@ textarea::-webkit-input-placeholder {
   padding-left: 2px;
 }
 
-textarea:-ms-input-placeholder {
-  padding-left: 2px;
-}
-
 textarea::-ms-input-placeholder {
   padding-left: 2px;
 }
@@ -25719,6 +25715,10 @@ page-petshops .efect {
 page-petshops .efect:hover {
   -webkit-transform: scale(1.2);
   transform: scale(1.2);
+}
+
+page-petshops #map {
+  height: 100%;
 }
 
 .centralizar {

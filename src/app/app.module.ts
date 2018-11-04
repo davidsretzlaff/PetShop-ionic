@@ -16,7 +16,7 @@ import { FuncionarioService } from "../services/domain/Funcionario.service";
 import { PetshopsPage } from "../pages/petshops/petshops";
 
 import { ClienteService } from "../services/domain/Cliente.service";
-
+import { Geolocation } from '@ionic-native/geolocation';
 import { AnimalService } from './../services/domain/Animal.service';
 
 
@@ -46,10 +46,9 @@ import { AnimalService } from './../services/domain/Animal.service';
     AgendaFuncionarioService,
     TipoAnimalService,
     FuncionarioService,
-
     ClienteService,
-
-    AnimalService
+    AnimalService,
+    Geolocation
 
      // importar o servico que consome api
   ]

@@ -1,6 +1,6 @@
 webpackJsonp([3],{
 
-/***/ 102:
+/***/ 103:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8,6 +8,7 @@ webpackJsonp([3],{
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(42);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_domain_petshop_service__ = __webpack_require__(52);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_geolocation__ = __webpack_require__(158);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -20,11 +21,16 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
+var geocoder;
+var address = "av capivari 1324 porto alegre rs";
 var PetshopsPage = /** @class */ (function () {
-    function PetshopsPage(navCtrl, navParams, petshopService) {
+    function PetshopsPage(navCtrl, navParams, geolocation, petshopService) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
+        this.geolocation = geolocation;
         this.petshopService = petshopService;
+        this.addres = [];
     }
     // função chamando o serviço que consome api
     PetshopsPage.prototype.ionViewDidLoad = function () {
@@ -32,6 +38,7 @@ var PetshopsPage = /** @class */ (function () {
         this.petshopService.findAll()
             .subscribe(function (response) {
             _this.items = response;
+            _this.addmark();
         }, function (error) {
             console.log(error);
         });
@@ -59,22 +66,62 @@ var PetshopsPage = /** @class */ (function () {
             id: petshop
         });
     };
+    //api google maps
+    PetshopsPage.prototype.addmark = function () {
+        var _this = this;
+        this.geolocation.getCurrentPosition()
+            .then(function (resp) {
+            var position = new google.maps.LatLng(resp.coords.latitude, resp.coords.longitude);
+            var mapOptions = {
+                zoom: 15,
+                center: position
+            };
+            _this.map = new google.maps.Map(document.getElementById('map'), mapOptions);
+            var marker = new google.maps.Marker({
+                position: position,
+                map: _this.map,
+            });
+            _this.codeAddress(_this.map);
+        }).catch(function (error) {
+            console.log('Erro ao recuperar sua posição', error);
+        });
+    };
+    PetshopsPage.prototype.codeAddress = function (map) {
+        for (var x = 0; x < this.items.length; x++) {
+            this.addres.push(this.items[x].endereco);
+        }
+        geocoder = new google.maps.Geocoder();
+        for (var _i = 0, _a = this.addres; _i < _a.length; _i++) {
+            var item = _a[_i];
+            geocoder.geocode({ 'address': item.logradouro + " " + item.numero + " " + item.cep + " RS " }, function (results, status) {
+                if (status === 'OK') {
+                    map.setCenter(results[0].geometry.location);
+                    var marker = new google.maps.Marker({
+                        map: map,
+                        position: results[0].geometry.location
+                    });
+                }
+                else {
+                    alert('Geocode was not successful for the following reason: ' + status);
+                }
+            });
+        }
+    };
     PetshopsPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-petshops',template:/*ion-inline-start:"C:\ws-ionic\teste.Ionic\src\pages\petshops\petshops.html"*/'\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n    <ion-title>Petshops</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n\n\n  <div class="centro">\n\n    <img src="../../assets/icon/cat.png" class="efect" id="cat" (click)="infoPet(2)" >\n\n    <img src="../../assets/icon/dog.png" class="efect"  id="dog" (click)="infoPet(1)" >\n\n\n\n  </div>\n\n  \n\n  <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>\n\n<ion-list>\n\n  \n\n  <button (click)="pageservice(item.id)" ion-item *ngFor="let item of items"  >\n\n    <ion-thumbnail item-start>\n\n      <img src="../../assets/imgs/pt.png">\n\n    </ion-thumbnail>\n\n    <h2>{{item.nome}}</h2>\n\n    <p> {{item.endereco.logradouro}} {{item.endereco.numero}}</p>\n\n\n\n  </button>\n\n\n\n</ion-list>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\ws-ionic\teste.Ionic\src\pages\petshops\petshops.html"*/,
+            selector: 'page-petshops',template:/*ion-inline-start:"C:\ws-ionic\teste.Ionic\src\pages\petshops\petshops.html"*/'\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n    <ion-title>Petshops</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n\n\n  <div class="centro">\n\n    <img src="../../assets/icon/cat.png" class="efect" id="cat" (click)="infoPet(2)" >\n\n    <img src="../../assets/icon/dog.png" class="efect"  id="dog" (click)="infoPet(1)" >\n\n\n\n  </div>\n\n  \n\n  <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>\n\n<ion-list>\n\n  \n\n  <button (click)="pageservice(item.id)" ion-item *ngFor="let item of items"  >\n\n    <ion-thumbnail item-start>\n\n      <img src="../../assets/imgs/pt.png">\n\n    </ion-thumbnail>\n\n    <h2>{{item.nome}}</h2>\n\n    <p> {{item.endereco.logradouro}} {{item.endereco.numero}}</p>\n\n\n\n  </button>\n\n\n\n</ion-list>\n\n\n\n  <div #map id="map"></div>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\ws-ionic\teste.Ionic\src\pages\petshops\petshops.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */],
-            __WEBPACK_IMPORTED_MODULE_2__services_domain_petshop_service__["a" /* PetshopService */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__ionic_native_geolocation__["a" /* Geolocation */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__ionic_native_geolocation__["a" /* Geolocation */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_2__services_domain_petshop_service__["a" /* PetshopService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_domain_petshop_service__["a" /* PetshopService */]) === "function" && _d || Object])
     ], PetshopsPage);
     return PetshopsPage;
+    var _a, _b, _c, _d;
 }());
 
 //# sourceMappingURL=petshops.js.map
 
 /***/ }),
 
-/***/ 114:
+/***/ 115:
 /***/ (function(module, exports) {
 
 function webpackEmptyAsyncContext(req) {
@@ -87,24 +134,24 @@ function webpackEmptyAsyncContext(req) {
 webpackEmptyAsyncContext.keys = function() { return []; };
 webpackEmptyAsyncContext.resolve = webpackEmptyAsyncContext;
 module.exports = webpackEmptyAsyncContext;
-webpackEmptyAsyncContext.id = 114;
+webpackEmptyAsyncContext.id = 115;
 
 /***/ }),
 
-/***/ 156:
+/***/ 157:
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
 	"../pages/agenda/agenda.module": [
-		283,
+		284,
 		1
 	],
 	"../pages/petshops/petshops.module": [
-		284,
+		285,
 		2
 	],
 	"../pages/servico-pet/servico-pet.module": [
-		285,
+		286,
 		0
 	]
 };
@@ -119,12 +166,12 @@ function webpackAsyncContext(req) {
 webpackAsyncContext.keys = function webpackAsyncContextKeys() {
 	return Object.keys(map);
 };
-webpackAsyncContext.id = 156;
+webpackAsyncContext.id = 157;
 module.exports = webpackAsyncContext;
 
 /***/ }),
 
-/***/ 200:
+/***/ 201:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -163,7 +210,7 @@ var ClienteService = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 201:
+/***/ 202:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -205,13 +252,13 @@ var FuncionarioService = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 202:
+/***/ 203:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(203);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(223);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(204);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(224);
 
 
 Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_1__app_module__["a" /* AppModule */]);
@@ -219,7 +266,7 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 
 /***/ }),
 
-/***/ 223:
+/***/ 224:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -228,24 +275,26 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_common_http__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular__ = __webpack_require__(42);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_splash_screen__ = __webpack_require__(196);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_status_bar__ = __webpack_require__(199);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__app_component__ = __webpack_require__(277);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_home_home__ = __webpack_require__(278);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_splash_screen__ = __webpack_require__(199);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_status_bar__ = __webpack_require__(200);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__app_component__ = __webpack_require__(278);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_home_home__ = __webpack_require__(279);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__services_domain_petshop_service__ = __webpack_require__(52);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__services_domain_TipoServico_service__ = __webpack_require__(279);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__services_domain_AgendaFuncionario_service__ = __webpack_require__(280);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__services_domain_TipoAnimal_service__ = __webpack_require__(281);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__services_domain_Funcionario_service__ = __webpack_require__(201);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_petshops_petshops__ = __webpack_require__(102);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__services_domain_Cliente_service__ = __webpack_require__(200);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__services_domain_Animal_service__ = __webpack_require__(282);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__services_domain_TipoServico_service__ = __webpack_require__(280);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__services_domain_AgendaFuncionario_service__ = __webpack_require__(281);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__services_domain_TipoAnimal_service__ = __webpack_require__(282);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__services_domain_Funcionario_service__ = __webpack_require__(202);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_petshops_petshops__ = __webpack_require__(103);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__services_domain_Cliente_service__ = __webpack_require__(201);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__ionic_native_geolocation__ = __webpack_require__(158);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__services_domain_Animal_service__ = __webpack_require__(283);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -299,7 +348,8 @@ var AppModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_11__services_domain_TipoAnimal_service__["a" /* TipoAnimalService */],
                 __WEBPACK_IMPORTED_MODULE_12__services_domain_Funcionario_service__["a" /* FuncionarioService */],
                 __WEBPACK_IMPORTED_MODULE_14__services_domain_Cliente_service__["a" /* ClienteService */],
-                __WEBPACK_IMPORTED_MODULE_15__services_domain_Animal_service__["a" /* AnimalService */]
+                __WEBPACK_IMPORTED_MODULE_16__services_domain_Animal_service__["a" /* AnimalService */],
+                __WEBPACK_IMPORTED_MODULE_15__ionic_native_geolocation__["a" /* Geolocation */]
                 // importar o servico que consome api
             ]
         })
@@ -311,16 +361,16 @@ var AppModule = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 277:
+/***/ 278:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MyApp; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(42);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(199);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(196);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_petshops_petshops__ = __webpack_require__(102);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(200);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(199);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_petshops_petshops__ = __webpack_require__(103);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -357,7 +407,7 @@ var MyApp = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 278:
+/***/ 279:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -382,20 +432,9 @@ var HomePage = /** @class */ (function () {
         this.navCtrl = navCtrl;
         this.petshopService = petshopService;
     }
-    HomePage.prototype.ionViewDidLoad = function () {
-        this.petshopService.findAll()
-            .subscribe(function (response) {
-            console.log(response);
-        }, function (error) {
-            console.log(error);
-        });
-    };
-    HomePage.prototype.petshops = function () {
-        this.navCtrl.push('PetshopsPage');
-    };
     HomePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-home',template:/*ion-inline-start:"C:\ws-ionic\teste.Ionic\src\pages\home\home.html"*/'\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>Petshops</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n\n  <div class="centro">\n    <img src="../../assets/icon/cat.png" id="cat" (click)="infoPet(1)" >\n    <img src="../../assets/icon/dog.png"  id="dog" (click)="infoPet(2)" >\n  </div>\n  \n  <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>\n<ion-list>\n  <button ion-item *ngFor="let item of items">\n    <ion-thumbnail item-start>\n      <img src="../../assets/imgs/pt.png">\n    </ion-thumbnail>\n    <h2>{{item.nome}}</h2>\n    <p> {{item.endereco.logradouro}} {{item.endereco.numero}}</p>\n\n  </button>\n</ion-list>\n</ion-content>\n'/*ion-inline-end:"C:\ws-ionic\teste.Ionic\src\pages\home\home.html"*/
+            selector: 'page-home',template:/*ion-inline-start:"C:\ws-ionic\teste.Ionic\src\pages\home\home.html"*/'\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>Petshops</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n\n  <!--<div class="centro">\n    <img src="../../assets/icon/cat.png" id="cat" (click)="infoPet(1)" >\n    <img src="../../assets/icon/dog.png"  id="dog" (click)="infoPet(2)" >\n  </div>\n  \n  <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>\n<ion-list>\n  <button ion-item *ngFor="let item of items">\n    <ion-thumbnail item-start>\n      <img src="../../assets/imgs/pt.png">\n    </ion-thumbnail>\n    <h2>{{item.nome}}</h2>\n    <p> {{item.endereco.logradouro}} {{item.endereco.numero}}</p>\n\n  </button>\n</ion-list>-->\n\n  <div #map id="map"></div>\n\n</ion-content>\n'/*ion-inline-end:"C:\ws-ionic\teste.Ionic\src\pages\home\home.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_2__services_domain_petshop_service__["a" /* PetshopService */]])
@@ -407,7 +446,7 @@ var HomePage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 279:
+/***/ 280:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -446,7 +485,7 @@ var TipoServicoService = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 280:
+/***/ 281:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -485,7 +524,7 @@ var AgendaFuncionarioService = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 281:
+/***/ 282:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -524,7 +563,7 @@ var TipoAnimalService = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 282:
+/***/ 283:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -620,5 +659,5 @@ var PetshopService = /** @class */ (function () {
 
 /***/ })
 
-},[202]);
+},[203]);
 //# sourceMappingURL=main.js.map
