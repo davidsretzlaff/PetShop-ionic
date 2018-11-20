@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { AgendaFuncionarioDTO } from "../../models/AgendaFuncionario";
+import { AgendaFuncionarioService } from "../../services/domain/AgendaFuncionario.service";
 
 /**
  * Generated class for the AgendaPage page.
@@ -17,14 +19,21 @@ export class AgendaPage {
 
   petEscolhido = this.navParams.get('pet');
   servicoEscolhido=  this.navParams.get('servico');
-
+  Agenda : AgendaFuncionarioDTO[];
   constructor(
     public navCtrl: NavController,
-     public navParams: NavParams) {
+     public navParams: NavParams,
+     public AgendaService : AgendaFuncionarioService) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad AgendaPage');
+  this.AgendaService.findAll()// buscando um cliente padrão para simula~ção
+    .subscribe(response =>{
+      this.Agenda = response;
+    },
+    error =>{
+      console.log(error);
+    });
   }
 
 }

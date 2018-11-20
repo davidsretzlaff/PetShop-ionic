@@ -45,6 +45,7 @@ var AgendaPageModule = /** @class */ (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AgendaPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(42);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_domain_AgendaFuncionario_service__ = __webpack_require__(201);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -56,6 +57,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
+
 /**
  * Generated class for the AgendaPage page.
  *
@@ -63,21 +65,29 @@ var __metadata = (this && this.__metadata) || function (k, v) {
  * Ionic pages and navigation.
  */
 var AgendaPage = /** @class */ (function () {
-    function AgendaPage(navCtrl, navParams) {
+    function AgendaPage(navCtrl, navParams, AgendaService) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
+        this.AgendaService = AgendaService;
         this.petEscolhido = this.navParams.get('pet');
         this.servicoEscolhido = this.navParams.get('servico');
     }
     AgendaPage.prototype.ionViewDidLoad = function () {
-        console.log('ionViewDidLoad AgendaPage');
+        var _this = this;
+        this.AgendaService.findAll() // buscando um cliente padrão para simula~ção
+            .subscribe(function (response) {
+            _this.Agenda = response;
+        }, function (error) {
+            console.log(error);
+        });
     };
     AgendaPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
             selector: 'page-agenda',template:/*ion-inline-start:"C:\ws-ionic\teste.Ionic\src\pages\agenda\agenda.html"*/'<!--\n  Generated template for the AgendaPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>Agenda</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n  <!--<div class="grid-agenda ocupado"> <h2>8:00</h2>  </div>\n  <div class="grid-agenda disponivel"> <h2>9:00 </h2> </div>\n  <div class="grid-agenda disponivel"> <h2>10:00</h2>  </div>\n  <div class="grid-agenda disponivel"> <h2>11:00</h2>  </div>\n  <div class="grid-agenda disponivel"> <h2>12:00</h2>  </div>\n  <div class="grid-agenda disponivel"> <h2>13:00</h2>  </div>\n  <div class="grid-agenda disponivel"> <h2>14:00</h2>  </div>\n  <div class="grid-agenda disponivel"><h2> 15:00</h2>  </div>\n  <div class="grid-agenda disponivel"> <h2>16:00</h2>  </div>\n  <div class="grid-agenda disponivel"> <h2>17:00</h2>  </div>\n  <div class="grid-agenda disponivel"> <h2>18:00</h2>  </div>-->\n\n  <ion-grid>\n  <ion-row>\n    <ion-col  col-6> <div class="grid-agenda disponivel"> <h2>8:00</h2>  </div></ion-col>\n    <ion-col  col-6><div class="grid-agenda ocupado"> <h2>9:00</h2>  </div> </ion-col>\n  </ion-row>\n    <ion-row>\n    <ion-col  col-6><div class="grid-agenda disponivel"> <h2>10:00</h2>  </div> </ion-col>\n    <ion-col col-6> <div class="grid-agenda disponivel"> <h2>11:00</h2>  </div></ion-col>\n  </ion-row>\n    <ion-row>\n    <ion-col  col-6><div class="grid-agenda disponivel"> <h2>12:00</h2>  </div></ion-col>\n    <ion-col  col-6><div class="grid-agenda disponivel"> <h2>13:00</h2>  </div> </ion-col>\n  </ion-row>\n    <ion-row>\n    <ion-col  col-6><div class="grid-agenda disponivel"> <h2>14:00</h2>  </div> </ion-col>\n    <ion-col col-6> <div class="grid-agenda disponivel"> <h2>15:00</h2>  </div></ion-col>\n  </ion-row>\n    <ion-row>\n    <ion-col  col-6> <div class="grid-agenda disponivel"> <h2>16:00</h2>  </div></ion-col>\n    <ion-col  col-6><div class="grid-agenda disponivel"> <h2>17:00</h2>  </div> </ion-col>\n  </ion-row>\n    <ion-row>\n    <ion-col  col-6><div class="grid-agenda disponivel"> <h2>18:00</h2>  </div> </ion-col>\n    <ion-col col-6> <div class="grid-agenda disponivel"> <h2>18:00</h2>  </div></ion-col>\n  </ion-row>\n</ion-grid>\n\n</ion-content>\n'/*ion-inline-end:"C:\ws-ionic\teste.Ionic\src\pages\agenda\agenda.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */],
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */]])
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */],
+            __WEBPACK_IMPORTED_MODULE_2__services_domain_AgendaFuncionario_service__["a" /* AgendaFuncionarioService */]])
     ], AgendaPage);
     return AgendaPage;
 }());
